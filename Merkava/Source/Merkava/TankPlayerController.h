@@ -15,7 +15,7 @@ class MERKAVA_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-public:
+private:
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaTime) override;
@@ -24,6 +24,12 @@ public:
 
 	void AimTowardsCrosshair(); //Move barrel so shot would 
 								//hit where crosshair intersects with the world
-	bool GetSightRayHitLocation(FVector& OutHitLocation) const;							
+	bool GetSightRayHitLocation(FVector& OutHitLocation) const;	
+
+	UPROPERTY(EditAnywhere)
+	float CrosshairXLocation = 0.5;
+
+	UPROPERTY(EditAnywhere)
+	float CrosshairYLocation = 0.3333333;						
 
 };

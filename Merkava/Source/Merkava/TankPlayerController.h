@@ -16,7 +16,13 @@ class MERKAVA_API ATankPlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
-	ATank* GetControlledTank() const;
 	virtual void BeginPlay() override;
-	
+
+	virtual void Tick(float DeltaTime) override;
+
+	ATank* GetControlledTank() const;
+
+	void AimTowardsCrosshair(); //Move barrel so shot would 
+								//hit where crosshair intersects with the world
+
 };

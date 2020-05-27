@@ -35,7 +35,7 @@ void ATankPlayerController::AimTowardsCrosshair()
     FVector HitLocation; // Out parameter
     if (GetSightRayHitLocation(HitLocation))
     {
-        UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
+        //UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
         //tell controlled tank to aim barrel at this point
     }
     
@@ -46,9 +46,26 @@ void ATankPlayerController::AimTowardsCrosshair()
 bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
 {
     int32 ViewPortSizeX, ViewPortSizeY;
-    GetViewportSize(ViewPortSizeX, ViewPortSizeY)
+    GetViewportSize(ViewPortSizeX, ViewPortSizeY);
     auto ScreenLocation = FVector2D(CrosshairXLocation * ViewPortSizeX, CrosshairYLocation * ViewPortSizeY);
 
-    OutHitLocation = FVector(1.0);
+    FVector LookDirection;
+    if (GetLookDirection(ScreenLocation, LookDirection))
+    {
+       UE_LOG(LogTemp, Warning, TEXT("LookDirection:%s"), *LookDirection.ToString());
+    }
+    
     return true;
 }							
+
+bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const
+{
+    FVector CameraWorldLocation;
+    return DeprojectScreenPositionToWorld
+    (
+        ScreenLocation.X, 
+        ScreenLocation.Y, 
+        CameraWorldLocation, 
+        LookDirection
+    );
+}

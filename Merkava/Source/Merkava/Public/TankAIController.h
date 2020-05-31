@@ -16,6 +16,7 @@ class MERKAVA_API ATankAIController : public AAIController
 	GENERATED_BODY()
 
 private:
+	virtual void Tick( float DeltaTime ) override;
 
 	virtual void BeginPlay() override;	
 

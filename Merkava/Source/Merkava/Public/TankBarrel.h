@@ -16,7 +16,7 @@ class MERKAVA_API UTankBarrel : public UStaticMeshComponent
 	
 
 public:
-	void Elevate(float DegreesPerSecond);
+	void Elevate(float RelativeSpeed);
 
 private:
 	UPROPERTY(EditAnywhere, category = Setup)

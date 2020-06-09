@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS(meta=(BlueprintSpawnableComponent), hidecategories = ("Collision") )
+UCLASS(meta=(BlueprintSpawnableComponent))
 class MERKAVA_API UTankBarrel : public UStaticMeshComponent
 {
 	GENERATED_BODY()
@@ -23,8 +23,8 @@ private:
 	float MaxDegreesPerSecond = 20;
 	
 	UPROPERTY(EditAnywhere, category = Setup)
-	float MaxElevation = 45;
+	float MaxElevationDegrees = 40;
 	
 	UPROPERTY(EditAnywhere, category = Setup)
-	float MinElevation = 0;
+	float MinElevationDegrees = 0;
 };

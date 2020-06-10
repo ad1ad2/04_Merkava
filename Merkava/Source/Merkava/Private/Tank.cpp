@@ -31,14 +31,18 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ATank::Fire()
 {
-	auto Time = GetWorld()->GetTimeSeconds();
-    UE_LOG(LogTemp, Warning, TEXT("%f: Tank is Firing"), Time);
+
 
 	if(!Barrel) { return; }
 	//else spawn projectile
-	FVector ProjectileLocation = Barrel->GetSocketLocation(FName("Projectile"));
-	FRotator ProjectileRotation = Barrel->GetSocketRotation(FName("Projectile"));
-	GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, ProjectileLocation, ProjectileRotation);
+	
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>
+	(ProjectileBlueprint, 
+	Barrel->GetSocketLocation(FName("Projectile")), 
+	Barrel->GetSocketRotation(FName("Projectile"))
+	);
+	
+	Projectile->LaunchProjectile(LaunchSpeed);
 }
 
 void ATank::AimAt(FVector HitLocation)

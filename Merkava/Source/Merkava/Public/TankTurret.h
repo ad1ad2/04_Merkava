@@ -14,4 +14,12 @@ class MERKAVA_API UTankTurret : public UStaticMeshComponent
 {
 	GENERATED_BODY()
 	
+public:
+
+	void Rotate(float RelativeSpeed);	
+
+private:
+
+	UPROPERTY(EditAnywhere, category = Setup)
+	float MaxDegreesPerSecond = 20;	
 };
